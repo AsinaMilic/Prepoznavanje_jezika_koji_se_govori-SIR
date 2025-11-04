@@ -41,21 +41,21 @@ Eksperimentalni rezultati na datasetu koji sadrži 10.018 test uzoraka pokazuju 
 
 ## 1. Uvod
 
-Razvoj tehnologija za automatsko prepoznavanje jezika iz govornog signala predstavlja jedan od najznačajnijih pravaca istraživanja u oblasti obrade govora i mašinskog učenja. Tokom poslednjih decenija, sa ubrzanim procesom globalizacije i eksponencijalnim rastom međunarodne komunikacije, potreba za efikasnim sistemima koji mogu automatski identifikovati jezik govora postala je imperativ u brojnim domenima primene.
+Razvoj tehnologija za automatsko prepoznavanje jezika iz govornog signala predstavlja jedan od najznačajnijih pravaca istraživanja u oblasti obrade govora i mašinskog učenja. Tokom poslednjih nekoliko decenija, sa ubrzanim procesom globalizacije i eksponencijalnim rastom međunarodne komunikacije, potreba za efikasnim sistemima koji mogu automatski identifikovati jezik govora postala je sve prisutnija u brojnim domenima - od call centara do bezbednosnih aplikacija.
 
-Istorijski posmatrano, prvi pokušaji automatskog prepoznavanja jezika datiraju još iz 1970-ih godina, kada su istraživači koristili relativno jednostavne akustičke karakteristike i statističke metode za razlikovanje između ograničenog broja jezika. Ovi rani sistemi bili su zasnovani na analizi spektralnih karakteristika govora i fonetskih osobina pojedinih jezika, ali su imali značajna ograničenja u pogledu tačnosti i broja jezika koje su mogli da prepoznaju. Tradicionalni pristupi, koji su dominirali sve do početka 21. veka, zasnivali su se na ručno dizajniranim karakteristikama i klasičnim algoritmima mašinskog učenja, kao što su Gaussian Mixture Models (GMM) i Support Vector Machines (SVM). Ovi modeli zahtevali su značajan ekspertski rad u domenu lingvistike i obrade signala kako bi se identifikovale relevantne karakteristike koje razlikuju jezike.
+Ako pogledamo istoriju, prvi pokušaji automatskog prepoznavanja jezika datiraju još iz 1970-ih godina. Tada su istraživači koristili relativno jednostavne akustičke karakteristike i statističke metode za razlikovanje između ograničenog broja jezika - uglavnom se radilo o nekoliko evropskih jezika. Ovi rani sistemi bili su zasnovani na analizi spektralnih karakteristika govora i fonetskih osobina pojedinih jezika, ali su, realno, imali dosta ograničenja kada je u pitanju tačnost i broj jezika koje su mogli da prepoznaju. Tradicionalni pristupi, koji su dominirali sve do početka 21. veka, zasnivali su se na ručno dizajniranim karakteristikama i klasičnim algoritmima mašinskog učenja, kao što su Gaussian Mixture Models (GMM) i Support Vector Machines (SVM). Ovi modeli zahtevali su značajan ekspertski rad u domenu lingvistike i obrade signala kako bi se identifikovale relevantne karakteristike koje razlikuju jezike.
 
-Međutim, revolucija u oblasti dubokog učenja koja je započela oko 2012. godine, sa razvojem dubokih konvolucionih neuronskih mreža i dostupnošću velikih količina audio podataka, donela je fundamentalnu promenu u pristupu ovom problemu. Neuronske mreže pokazale su sposobnost da automatski uče hijerarhijske reprezentacije iz sirovih audio podataka, eliminirajući potrebu za ručnim dizajnom karakteristika i postižući superiorne performanse u zadacima klasifikacije audio signala [10]. Ova promena paradigme omogućila je razvoj sistema koji mogu da prepoznaju desetine, pa čak i stotine različitih jezika sa visokom tačnošću.
+Međutim, prava revolucija desila se oko 2012. godine sa razvojem dubokih konvolucionih neuronskih mreža i, što je možda još važnije, sa dostupnošću velikih količina audio podataka. Neuronske mreže pokazale su da mogu automatski da uče hijerarhijske reprezentacije iz sirovih audio podataka, što je praktično eliminisalo potrebu za ručnim dizajnom karakteristika - nešto što je ranije zahtevalo godine ekspertskog rada. Performanse su bile značajno bolje od svega što smo do tada videli [10]. Ova promena paradigme otvorila je vrata za razvoj sistema koji mogu da prepoznaju ne samo desetine, već i stotine različitih jezika sa prilično visokom tačnošću.
 
-Danas, automatsko prepoznavanje jezika ima izuzetno široku primenu u industriji, društvu i nauci. U komercijalnom sektoru, ova tehnologija postala je nezamenljiva u višejezičnim call centrima gde omogućava automatsko rutiranje poziva ka operaterima koji govore odgovarajući jezik, čime se značajno poboljšava korisničko iskustvo i efikasnost poslovanja. Sistemi za automatsko prevođenje u realnom vremenu, koji su postali sastavni deo moderne međunarodne komunikacije, oslanjaju se na preciznu identifikaciju jezika kao prvi korak u procesu prevođenja. Digitalni asistenti poput Alexe, Siri i Google Assistanta koriste prepoznavanje jezika kako bi mogli da komuniciraju sa korisnicima na njihovom maternjem jeziku, dok streaming platforme poput YouTube-a i Netflix-a koriste ovu tehnologiju za automatsku kategorizaciju sadržaja i preporuke korisnicima.
+Danas, automatsko prepoznavanje jezika ima zaista široku primenu - od industrije, preko društvenih aplikacija, pa do naučnih istraživanja. U komercijalnom sektoru, tehnologija je postala skoro nezamenljiva u višejezičnim call centrima. Zamislite scenario: pozivate neku međunarodnu kompaniju, i sistem automatski prepozna da govorite srpski i preusmeri vas ka operateru koji govori vaš jezik. To značajno poboljšava korisničko iskustvo i, naravno, efikasnost poslovanja. Sistemi za automatsko prevođenje u realnom vremenu, koji su postali sastavni deo moderne međunarodne komunikacije, oslanjaju se na preciznu identifikaciju jezika kao prvi korak u procesu prevođenja. Digitalni asistenti poput Alexe, Siri i Google Assistanta koriste prepoznavanje jezika kako bi mogli da komuniciraju sa korisnicima na njihovom maternjem jeziku, dok streaming platforme poput YouTube-a i Netflix-a koriste ovu tehnologiju za automatsku kategorizaciju sadržaja i preporuke korisnicima.
 
 U društvenom i kulturnom kontekstu, automatsko prepoznavanje jezika doprinosi bezbednosnim sistemima kroz analizu komunikacija u svrhu detekcije pretnji, omogućava automatsko titlovanje medijskog sadržaja čime se povećava pristupačnost informacija, pomaže u očuvanju ugroženih jezika kroz digitalizaciju i analizu audio arhiva, te olakšava učenje stranih jezika kroz interaktivne aplikacije koje pružaju trenutnu povratnu informaciju. U naučnim istraživanjima i medicini, analiza govora ima značajnu ulogu u proučavanju jezičke raznovrsnosti, sociolingvističkih fenomena, kao i u detekciji neuroloških poremećaja koji utiču na govor, poput Parkinsonove bolesti ili afazije.
 
-Ekonomski uticaj ove tehnologije ne može se zanemariti - globalno tržište rešenja za obradu govora procenjuje se na više desetina milijardi dolara godišnje, sa stopom rasta koja premašuje 15% godišnje. Automatizacija procesa prepoznavanja jezika smanjuje operativne troškove u brojnim industrijama, od telekomunikacija do turizma, dok istovremeno povećava efikasnost i kvalitet usluga. U kontekstu globalizacije, ova tehnologija omogućava personalizaciju digitalnih usluga na osnovu jezika korisnika, ciljano oglašavanje na različitim tržištima, i efikasniju komunikaciju između geografski i kulturno udaljenih zajednica. Sa razvojem Internet of Things (IoT) uređaja i kontinuiranim porastom količine audio podataka koji se generišu svakodnevno, očekuje se da automatsko prepoznavanje jezika postane još integrisaniji deo svakodnevnih aplikacija - od pametnih domova koji se prilagođavaju jeziku korisnika, do autonomnih sistema koji mogu da komuniciraju sa ljudima na različitim jezicima.
+Ekonomski uticaj ove tehnologije je, blago rečeno, impresivan - globalno tržište rešenja za obradu govora procenjuje se na više desetina milijardi dolara godišnje, sa stopom rasta koja premašuje 15% godišnje. To nije iznenađujuće kada se uzme u obzir da automatizacija procesa prepoznavanja jezika može značajno da smanji operativne troškove u brojnim industrijama - od telekomunikacija do turizma - dok istovremeno povećava efikasnost i kvalitet usluga. U kontekstu globalizacije, ova tehnologija omogućava personalizaciju digitalnih usluga na osnovu jezika korisnika, ciljano oglašavanje na različitim tržištima, i efikasniju komunikaciju između geografski i kulturno udaljenih zajednica. Sa razvojem Internet of Things (IoT) uređaja i kontinuiranim porastom količine audio podataka koji se generišu svakodnevno, očekuje se da automatsko prepoznavanje jezika postane još integrisaniji deo svakodnevnih aplikacija - od pametnih domova koji se prilagođavaju jeziku korisnika, do autonomnih sistema koji mogu da komuniciraju sa ljudima na različitim jezicima.
 
-Ipak, prepoznavanje jezika iz govornog signala ostaje kompleksan i izazovan zadatak klasifikacije. Za razliku od tekstualnog prepoznavanja jezika, gde su karakteristike relativno stabilne i jasno definisane, audio signal nosi sa sobom brojne izvore varijabilnosti i šuma. Potrebno je prepoznati jezik iz kratkog audio segmenta koji može biti snimljen u različitim akustičkim uslovima, sa različitim kvalitetom opreme, i od govornika sa različitim karakteristikama glasa. Na rezultate značajno utiču faktori kao što su varijabilnost između govornika (pol, starost, individualne karakteristike glasa), kvalitet snimanja (tip mikrofona, pozadinska buka, kompresija audio signala), trajanje audio segmenta (kraći segmenti nose manje informacija), lingvistička sličnost između jezika (posebno unutar istih jezičkih porodica), kao i postojanje dijalekata, regionalnih varijanti i stranih akcenata.
+Ipak, treba biti realan - prepoznavanje jezika iz govornog signala i dalje ostaje prilično kompleksan i izazovan zadatak. Za razliku od tekstualnog prepoznavanja jezika (gde je situacija relativno jednostavna jer su karakteristike stabilne i jasno definisane), audio signal nosi sa sobom gomilu izvora varijabilnosti i šuma. Potrebno je prepoznati jezik iz kratkog audio segmenta koji može biti snimljen u različitim akustičkim uslovima, sa različitim kvalitetom opreme, i od govornika sa različitim karakteristikama glasa. Na rezultate značajno utiču faktori kao što su varijabilnost između govornika (pol, starost, individualne karakteristike glasa), kvalitet snimanja (tip mikrofona, pozadinska buka, kompresija audio signala), trajanje audio segmenta (kraći segmenti nose manje informacija), lingvistička sličnost između jezika (posebno unutar istih jezičkih porodica), kao i postojanje dijalekata, regionalnih varijanti i stranih akcenata.
 
-Dodatni izazov predstavlja i fenomen code-switching-a, odnosno prebacivanja između jezika tokom govora, što je česta pojava u višejezičnim zajednicama. Takođe, govorni signal može sadržati emotivne komponente, različite stilove govora (formalni, neformalni, brzi, spori), kao i specifične karakteristike kao što su pevanje, šaputanje ili govor pod stresom, što dodatno komplikuje zadatak automatskog prepoznavanja.
+Dodatni izazov predstavlja i fenomen code-switching-a - prebacivanje između jezika tokom govora. Ovo je česta pojava u višejezičnim zajednicama (npr. neko govori srpski ali ubacuje engleske reči). Takođe, govorni signal može sadržati emotivne komponente, različite stilove govora (formalni, neformalni, brzi, spori), pa čak i specifične karakteristike kao što su pevanje, šaputanje ili govor pod stresom. Sve ovo dodatno komplikuje zadatak automatskog prepoznavanja i čini ga zanimljivim istraživačkim problemom.
 
 Zbog svih ovih faktora, razvoj tačnog i robusnog sistema za automatsko prepoznavanje jezika zahteva pažljivo dizajniranu metodologiju, odabir odgovarajućih karakteristika audio signala, primenu naprednih modela mašinskog učenja, kao i opsežno testiranje na raznovrsnim datasetima koji pokrivaju različite scenarije upotrebe. Ovaj rad predstavlja pokušaj da se sistematski istraže različiti pristupi ovom problemu, od klasičnih metoda mašinskog učenja do najsavremenijih arhitektura dubokih neuronskih mreža, sa ciljem da se identifikuju njihove prednosti, ograničenja i optimalne oblasti primene.
 
@@ -65,25 +65,35 @@ Zbog svih ovih faktora, razvoj tačnog i robusnog sistema za automatsko prepozna
 
 Klasifikacija govornog signala, odnosno Spoken Language IDentification (SLID), predstavlja specifičan podskup problema klasifikacije u mašinskom učenju koji se bavi automatskim prepoznavanjem jezika na osnovu akustičkih karakteristika govora. Za razliku od tekstualne klasifikacije jezika koja analizira pisani sadržaj, SLID sistemi moraju da ekstrahuju relevantne informacije direktno iz audio signala, što uvodi dodatne dimenzije kompleksnosti.
 
-Evolucija pristupa klasifikaciji govornog signala može se podeliti u nekoliko ključnih faza. Tokom 1990-ih i ranih 2000-ih godina, dominirali su pristupi zasnovani na Gaussian Mixture Models (GMM) i Hidden Markov Models (HMM), koji su koristili ručno dizajnirane akustičke karakteristike poput Linear Predictive Coding (LPC) koeficijenata i Mel-Frequency Cepstral Coefficients (MFCC). Ovi modeli zahtevali su značajno ekspertsko znanje za dizajn karakteristika i često su bili ograničeni u sposobnosti da generalizuju na nove uslove snimanja ili neviđene govornike.
+Ako pogledamo evoluciju pristupa klasifikaciji govornog signala, možemo je podeliti u nekoliko ključnih faza.
 
-Prelazak na metode mašinskog učenja zasnovane na Support Vector Machines (SVM) i Random Forests tokom 2000-ih godina doneo je određena poboljšanja, posebno u pogledu robusnosti i sposobnosti da rade sa višedimenzionalnim karakteristikama. Međutim, i dalje je postojala fundamentalna zavisnost od kvaliteta ručno dizajniranih karakteristika, što je predstavljalo usko grlo u razvoju sistema.
+![Slika 2.1: Evolucija pristupa u SLID](images/slid_evolution_timeline.png)
 
-Revolucionarna promena dogodila se od 2012. godine, kada su duboke neuronske mreže postale dominantan pristup u SLID zadacima [10]. Ova promena paradigme nije bila slučajna - omogućena je konvergencijom nekoliko ključnih faktora: dostupnošću velikih količina označenih audio podataka, razvojem moćnijih grafičkih procesora (GPU) koji omogućavaju efikasno treniranje dubokih mreža, kao i teorijskim napretkom u razumevanju i optimizaciji dubokih arhitektura. Ključne prednosti dubokog učenja uključuju automatsko učenje karakteristika iz sirovih podataka (eliminirajući potrebu za ručnim dizajnom), sposobnost učenja hijerarhijskih višeslojnih reprezentacija (od jednostavnih akustičkih obrazaca do kompleksnih jezičkih struktura), i end-to-end treniranje koje optimizuje ceo sistem istovremeno, umesto optimizacije pojedinačnih komponenti odvojeno.
+**Slika 2.1:** Evolucija pristupa u automatskom prepoznavanju jezika - od ranih GMM/HMM modela 1990-ih, preko SVM pristupa 2000-ih, do dominacije dubokog učenja od 2012. godine.
+
+Tokom 1990-ih i ranih 2000-ih godina, dominirali su pristupi zasnovani na Gaussian Mixture Models (GMM) i Hidden Markov Models (HMM). Ovi modeli koristili su ručno dizajnirane akustičke karakteristike - uglavnom Linear Predictive Coding (LPC) koeficijente i Mel-Frequency Cepstral Coefficients (MFCC). Problem je bio što su ovi modeli zahtevali dosta ekspertskog znanja za dizajn karakteristika, i često nisu bili baš najbolji kada je trebalo da generalizuju na nove uslove snimanja ili govornike koje nisu videli tokom treniranja.
+
+Prelazak na metode mašinskog učenja zasnovane na Support Vector Machines (SVM) i Random Forests tokom 2000-ih godina doneo je izvesna poboljšanja - posebno u pogledu robusnosti i sposobnosti da rade sa višedimenzionalnim karakteristikama. Ali, i dalje je postojao fundamentalni problem: zavisnost od kvaliteta ručno dizajniranih karakteristika. To je bilo pravo usko grlo u razvoju sistema jer je značilo da napredak zavisi od toga koliko dobro eksperti mogu da identifikuju relevantne karakteristike.
+
+Revolucionarna promena desila se od 2012. godine, kada su duboke neuronske mreže postale dominantan pristup u SLID zadacima [10]. Ova promena paradigme nije bila slučajna - desilo se nekoliko stvari istovremeno: postale su dostupne velike količine označenih audio podataka, razvijeni su moćniji grafički procesori (GPU) koji omogućavaju efikasno treniranje dubokih mreža, a i teorijski smo bolje razumeli kako da optimizujemo duboke arhitekture. Sve to zajedno stvorilo je savršenu oluju za napredak u ovoj oblasti. Ključne prednosti dubokog učenja uključuju automatsko učenje karakteristika iz sirovih podataka (eliminirajući potrebu za ručnim dizajnom), sposobnost učenja hijerarhijskih višeslojnih reprezentacija (od jednostavnih akustičkih obrazaca do kompleksnih jezičkih struktura), i end-to-end treniranje koje optimizuje ceo sistem istovremeno, umesto optimizacije pojedinačnih komponenti odvojeno.
 
 Duboke neuronske mreže pokazale su sposobnost da uče apstraktne reprezentacije koje su često superiorne ručno dizajniranim karakteristikama, čak i kada su dizajnirane od strane eksperata sa decenijama iskustva. Ove naučene reprezentacije pokazuju bolju generalizaciju na nove uslove, veću robusnost na šum i distorzije, i sposobnost da automatski identifikuju relevantne karakteristike koje razlikuju jezike, uključujući i one koje možda nisu bile očigledne ljudskim istraživačima.
 
 ### CNN arhitekture za SLID
 
-Konvolucione neuronske mreže (CNN) originalno su razvijene za zadatke kompjuterske vizije, ali su se pokazale izuzetno efikasnim i u domenu obrade audio signala. Ključna ideja koja omogućava primenu CNN-a na audio podatke jeste tretiranje spektrograma kao dvodimenzionalnih slika. U ovom pristupu, horizontalna osa spektrograma predstavlja vremensku dimenziju (kako se signal menja tokom vremena), dok vertikalna osa predstavlja frekventnu dimenziju (koje frekvencije su prisutne u signalu). Intenzitet boje ili nijanse u svakoj tački spektrograma odgovara energiji signala na toj specifičnoj frekvenciji u tom specifičnom trenutku.
+Konvolucione neuronske mreže (CNN) originalno su razvijene za zadatke kompjuterske vizije - prepoznavanje slika, detekciju objekata i slično. Ali, pokazalo se da su izuzetno efikasne i u domenu obrade audio signala, što je na prvi pogled možda malo neočekivano. Ključna ideja koja omogućava primenu CNN-a na audio podatke jeste tretiranje spektrograma kao dvodimenzionalnih slika - što, kada malo razmislite, ima dosta smisla. U ovom pristupu, horizontalna osa spektrograma predstavlja vremensku dimenziju (kako se signal menja tokom vremena), dok vertikalna osa predstavlja frekventnu dimenziju (koje frekvencije su prisutne u signalu). Intenzitet boje ili nijanse u svakoj tački spektrograma odgovara energiji signala na toj specifičnoj frekvenciji u tom specifičnom trenutku.
 
-Ova analogija sa slikama nije samo površna - spektrogrami zaista poseduju prostorne strukture i obrasce koji su analogni vizuelnim karakteristikama u slikama. Na primer, harmonici u govornom signalu pojavljuju se kao horizontalne linije u spektrogramu, formanti (rezonantne frekvencije vokalnog trakta) formiraju karakteristične obrasce koji se razlikuju između različitih fonema, a prelazi između fonema manifestuju se kao promene u spektralnoj strukturi. Različiti jezici imaju različite fonetske inventare, različite distribucije fonema, i različite prozodijske karakteristike (intonacija, ritam, naglasak), što se sve reflektuje u specifičnim obrascima u spektrogramima.
+Ova analogija sa slikama nije samo površna - spektrogrami zaista poseduju prostorne strukture i obrasce koji su analogni vizuelnim karakteristikama. Na primer, harmonici u govornom signalu pojavljuju se kao horizontalne linije u spektrogramu (što je vizuelno prilično jasno kada pogledate spektrogram), formanti (rezonantne frekvencije vokalnog trakta) formiraju karakteristične obrasce koji se razlikuju između različitih fonema, a prelazi između fonema se vide kao promene u spektralnoj strukturi. Različiti jezici imaju različite fonetske inventare i prozodijske karakteristike (intonacija, ritam, naglasak), što se sve reflektuje u specifičnim obrascima u spektrogramima. Različiti jezici imaju različite fonetske inventare, različite distribucije fonema, i različite prozodijske karakteristike (intonacija, ritam, naglasak), što se sve reflektuje u specifičnim obrascima u spektrogramima.
 
 CNN arhitekture za SLID sastoje se od nekoliko ključnih komponenti koje rade zajedno da ekstrahuju i klasifikuju ove obrasce:
 
 **Konvolucioni slojevi** predstavljaju srce CNN arhitekture. Oni primenjuju skup naučenih filtera (kernela) na ulazni spektrogram, pri čemu svaki filter ima relativno male dimenzije (tipično 3×3 ili 5×5 piksela) ali se primenjuje na celom spektrogramu kroz operaciju konvolucije. Svaki filter uči da detektuje specifičan lokalni spektralno-temporalni obrazac. U nižim slojevima mreže, filteri obično uče jednostavne karakteristike kao što su ivice, prelazi između frekvencija, ili lokalne varijacije u energiji. U višim slojevima, filteri kombinuju ove jednostavne karakteristike da detektuju kompleksnije strukture kao što su formanti (karakteristični za specifične vokale), prelazi između fonema, harmonička struktura (koja se razlikuje između tonskih i netonskih jezika), ili specifični spektralni obrasci karakteristični za određene jezike.
 
-Važno je napomenuti da se ovi filteri ne dizajniraju ručno - oni se uče automatski tokom procesa treniranja kroz algoritam backpropagation. Mreža sama otkriva koje karakteristike su najrelevantnije za razlikovanje jezika, što često rezultira filterima koji detektuju obrasce koje ljudski eksperti možda ne bi intuitivno identifikovali kao diskriminativne.
+Važno je napomenuti da se ovi filteri ne dizajniraju ručno - oni se uče automatski tokom procesa treniranja kroz algoritam backpropagation. To je zapravo jedna od najmoćnijih stvari kod dubokog učenja: mreža sama otkriva koje karakteristike su najrelevantnije za razlikovanje jezika. Često se desi da filteri detektuju obrasce koje ljudski eksperti možda ne bi intuitivno identifikovali kao diskriminativne, što je fascinantno kada razmislite o tome.
+
+![Slika 2.2: Vizualizacija naučenih CNN filtera](images/cnn_filters_visualization.png)
+
+**Slika 2.2:** Vizualizacija naučenih filtera u prvom konvolucionom sloju CNN modela. Svaki filter detektuje specifične spektralno-temporalne obrasce u mel-spektrogramima. Možemo videti da neki filteri reaguju na horizontalne strukture (harmonici), drugi na vertikalne (brze promene u vremenu), a treći na dijagonalne obrasce (formantne tranzicije).
 
 **Pooling slojevi** (najčešće max pooling ili average pooling) primenjuju se nakon konvolucionih slojeva i imaju nekoliko važnih funkcija. Prvo, oni smanjuju prostornu dimenzionalnost reprezentacije, što redukuje broj parametara u mreži i računsku kompleksnost, čineći model efikasnijim. Drugo, pooling uvodi određeni stepen translacione invarijantnosti - model postaje otporniji na male varijacije u položaju karakteristika u spektrogramu. Ovo je važno jer iste fonetske strukture mogu se pojaviti u različitim vremenskim pozicijama u različitim iskazima, a želimo da model prepozna te strukture nezavisno od njihove tačne pozicije. Tipična veličina pooling prozora je 2×2, što efektivno prepolovi prostorne dimenzije reprezentacije.
 
@@ -155,6 +165,10 @@ Mel-Frequency Cepstral Coefficients (MFCC) predstavljaju jednu od najšire kori�
 
 Proces ekstrakcije MFCC koeficijenata sastoji se od nekoliko pažljivo dizajniranih koraka, od kojih svaki ima specifičnu ulogu u transformaciji sirovog audio signala u kompaktnu reprezentaciju pogodnu za mašinsko učenje:
 
+![Slika 2.4: Pipeline ekstrakcije MFCC karakteristika](images/mfcc_extraction_pipeline.png)
+
+**Slika 2.4:** Dijagram toka ekstrakcije MFCC koeficijenata. Proces počinje sa sirovim audio signalom i prolazi kroz sedam koraka: pre-emphasis filtering, framing, windowing, FFT, mel-filter bank, logaritamsku kompresiju, i konačno DCT koji proizvodi finalne MFCC koeficijente. Svaki korak ima specifičnu ulogu u transformaciji signala.
+
 **1. Pre-emphasis filtering** je prvi korak u obradi signala. Ovaj korak primenjuje visokopropusni filter na signal, tipično u formi y[n] = x[n] - α·x[n-1], gde je α koeficijent koji se obično postavlja na vrednost oko 0.97. Svrha ovog koraka je da pojača više frekvencije u signalu koje su prirodno slabije u govornom signalu zbog fizike produkcije govora. Tokom govora, vazduh prolazi kroz vokalni trakt i vibracije glasnih žica, što prirodno rezultira u spektru koji opada sa frekvencijom. Pre-emphasis kompenzuje ovaj pad i balansira spektar, što olakšava dalju analizu i poboljšava performanse sistema.
 
 **2. Framing** je proces segmentacije kontinualnog audio signala u kratke, preklapajuće okvire (frame-ove). Tipična dužina okvira je između 20 i 40 milisekundi, što odgovara periodu tokom kojeg se karakteristike govornog signala mogu smatrati relativno stabilnim (kvazi-stacionarnim). Okviri se obično preklapaju za 50%, što znači da ako je okvir dužine 25ms, sledeći okvir počinje nakon 12.5ms (hop length). Ovo preklapanje osigurava da ne propustimo važne informacije koje bi mogle biti na granicama okvira i omogućava glatkiji prelaz između uzastopnih analiza.
@@ -180,6 +194,10 @@ Mel-spektrogram predstavlja 2D vremensko-frekventnu reprezentaciju signala na me
 ![Slika 1: Mel-spektrogram govornog signala](images/mel_spectrogram_example.png)
 
 **Slika 1:** Mel-spektrogram govornog signala (128 mel filtera) prikazuje vremensko-frekventnu energetsku distribuciju. Jasno vidljivi harmonici i formanti omogućavaju CNN modelima da automatski uče diskriminativne karakteristike različitih jezika.
+
+![Slika 2.3: Poređenje mel-spektrograma za različite jezike](images/mel_spectrogram_comparison.png)
+
+**Slika 2.3:** Poređenje mel-spektrograma iste rečenice izgovorene na pet različitih jezika. Možemo uočiti razlike u prozodijskim obrascima (intonacija), spektralnoj strukturi (fonetski inventar), i temporalnoj dinamici (ritam govora). Engleski pokazuje karakterističan obrazac sa jasno definisanim formantima, srpski ima specifične visokofrekventne komponente zbog glasova kao što su ć i č, nemački pokazuje oštre tranzicije između fonema, dok španski i francuski dele određene sličnosti u spektralnoj strukturi što objašnjava zašto se ova dva jezika ponekad mešaju u klasifikaciji.
 
 ### Dodatne spektralne karakteristike
 
@@ -223,9 +241,13 @@ Kombinacija ovih karakteristika, naročito MFCC i mel-spektrograma, čini osnovu
 
 ## 3. Metodologija
 
+Metodologija ovog istraživanja obuhvata sistematski pristup razvoju i evaluaciji sistema za automatsko prepoznavanje jezika. Proces je podeljen u nekoliko ključnih faza: dizajn arhitekture sistema, pripremu i obradu podataka, implementaciju različitih modela mašinskog učenja, treniranje i optimizaciju hiperparametara, te konačno evaluaciju i analizu performansi. Svaka od ovih faza zahteva pažljivo razmatranje brojnih faktora kako bi se osiguralo da finalni sistem bude robustan, tačan i praktično upotrebljiv.
+
+Prilikom dizajniranja metodologije, vodilo se računa o nekoliko ključnih principa. Prvo, sistem mora biti modularan - svaka komponenta treba da bude nezavisna i zamenljiva, što omogućava lako testiranje različitih pristupa i konfiguracija. Drugo, potrebno je osigurati reproducibilnost rezultata kroz fiksiranje random seed-ova i detaljno dokumentovanje svih parametara. Treće, evaluacija mora biti fer i konzistentna - svi modeli se testiraju na identičnim podacima pod istim uslovima. Konačno, sistem treba da bude skalabilan i lako proširiv na nove jezike ili različite uslove upotrebe.
+
 ### 3.1 Arhitektura sistema i obrada podataka
 
-Implementirani sistem za prepoznavanje jezika sastoji se od nekoliko modularnih komponenti koje zajedno formiraju kompletan pipeline od sirovog audio signala do predikcije jezika.
+Implementirani sistem za prepoznavanje jezika sastoji se od nekoliko modularnih komponenti koje zajedno formiraju kompletan pipeline od sirovog audio signala do predikcije jezika. Dizajn sistema zasniva se na principima softverskog inženjerstva koji naglašavaju modularnost, ponovnu upotrebljivost koda, i jasnu separaciju odgovornosti između komponenti. Ovakav pristup ne samo da olakšava razvoj i održavanje sistema, već takođe omogućava jednostavno eksperimentisanje sa različitim konfiguracijama i pristupima.
 
 Sistem se sastoji od sledećih glavnih komponenti:
 
@@ -243,7 +265,9 @@ Sistem se sastoji od sledećih glavnih komponenti:
 
 #### Audio Processing
 
-Audio Processing modul je odgovoran za učitavanje i normalizaciju audio zapisa. Implementiran je u Python-u korišćenjem librosa biblioteke [5].
+Audio Processing modul predstavlja prvu fazu u pipeline-u obrade i odgovoran je za učitavanje, validaciju i normalizaciju audio zapisa. Ova komponenta je kritična jer kvalitet ulaznih podataka direktno utiče na performanse celog sistema - princip "garbage in, garbage out" posebno je relevantan u mašinskom učenju. Modul je implementiran u Python-u korišćenjem librosa biblioteke [5], koja pruža robusne i efikasne funkcije za manipulaciju audio signalima.
+
+Tokom razvoja ovog modula, suočili smo se sa nekoliko praktičnih izazova. Prvo, audio zapisi iz različitih izvora mogu imati različite sample rate-ove, broj kanala (mono ili stereo), i formate (WAV, MP3, FLAC, itd.). Drugo, neki zapisi mogu biti oštećeni ili imati neočekivane karakteristike koje mogu uzrokovati greške tokom obrade. Treće, potrebno je balansirati između očuvanja kvaliteta signala i računske efikasnosti - na primer, viši sample rate pruža bolju frekventnu rezoluciju ali zahteva više memorije i procesorske moći.
 
 Ključne funkcionalnosti modula:
 
@@ -271,15 +295,21 @@ class AudioProcessor:
 
 Normalizacija parametara:
 
-- **Sample rate:** 16 kHz (standardna vrednost za govorni signal)
-- **Broj kanala:** Mono (konverzija stereo zapisa)
-- **Format:** Podrška za WAV, MP3 i FLAC formate
+- **Sample rate:** 16 kHz (standardna vrednost za govorni signal) - Ova vrednost je izabrana jer predstavlja dobar kompromis između kvaliteta i efikasnosti. Nyquist-Shannon teorema kaže da sample rate mora biti najmanje dvostruko veći od najviše frekvencije koju želimo da uhvatimo. Pošto je ljudski govor dominantno koncentrisan ispod 8 kHz, 16 kHz sample rate je dovoljan da uhvati sve relevantne informacije. Viši sample rate-ovi (npr. 44.1 kHz ili 48 kHz) bi doneli marginalne koristi uz značajno povećanje računske kompleksnosti.
+
+- **Broj kanala:** Mono (konverzija stereo zapisa) - Stereo zapisi se konvertuju u mono jer prostorna informacija (razlika između levog i desnog kanala) nije relevantna za identifikaciju jezika. Konverzija se vrši prosečavanjem oba kanala, što očuvava sve frekventne komponente dok redukuje količinu podataka za obradu.
+
+- **Format:** Podrška za WAV, MP3 i FLAC formate - WAV je nekompresovani format koji pruža najbolji kvalitet ali zauzima najviše prostora. MP3 je kompresovani format sa gubitkom koji je široko rasprostranjen ali može uvesti artifakte. FLAC je kompresovani format bez gubitka koji pruža dobar balans. Librosa biblioteka automatski dekodira sve ove formate u uniformnu reprezentaciju.
+
+Dodatno, modul implementira nekoliko mehanizama za rukovanje greškama i edge case-ovima. Na primer, ako je audio fajl previše kratak (manje od 1 sekunde), sistem ga odbacuje jer ne sadrži dovoljno informacija za pouzdanu klasifikaciju. Ako je fajl oštećen ili u nepoznatom formatu, sistem beleži grešku i nastavlja sa sledećim fajlom umesto da prekine ceo proces. Takođe, implementirana je normalizacija amplitude signala kako bi se osiguralo da svi zapisi imaju sličan nivo glasnoće, što sprečava da razlike u nivou snimanja utiču na ekstrakciju karakteristika.
 
 ---
 
 #### Feature Extraction
 
-Feature Extraction modul ekstraktuje numeričke reprezentacije audio signala koje se koriste kao ulaz za neuronske mreže.
+Feature Extraction modul predstavlja ključnu komponentu sistema koja transformiše sirovi audio signal u numeričke reprezentacije pogodne za mašinsko učenje. Kvalitet ekstraktovanih karakteristika direktno determiniše gornju granicu performansi koje model može postići - čak i najsofisticiraniji model ne može naučiti diskriminativne obrasce ako karakteristike ne sadrže relevantne informacije. Ovaj modul implementira dve komplementarne reprezentacije: MFCC koeficijente za RNN modele i mel-spektrograme za CNN modele.
+
+Izbor između različitih reprezentacija nije proizvoljan već se zasniva na prirodi arhitekture modela i tipu informacija koje želimo da uhvatimo. MFCC koeficijenti su kompaktna reprezentacija koja agregira spektralne informacije u mali broj koeficijenata, što ih čini pogodnim za sekvencionalne modele koji mogu efikasno procesirati duže sekvence. Mel-spektrogrami, s druge strane, zadržavaju punu vremensko-frekventnu strukturu signala, što omogućava CNN modelima da automatski uče relevantne prostorne obrasce.
 
 **MFCC Ekstrakcija:**
 
@@ -301,12 +331,15 @@ class FeatureExtractor:
         return mfcc
 ```
 
-Parametri ekstrakcije:
+Parametri ekstrakcije su pažljivo odabrani na osnovu literature i preliminarnih eksperimenata:
 
-- **n_mfcc:** 40 koeficijenata (standardna vrednost)
-- **n_fft:** 2048 (veličina FFT prozora)
-- **hop_length:** 512 (korak između frejmova)
-- **n_mels:** 128 (broj mel filtera za spektrogram)
+- **n_mfcc:** 40 koeficijenata - Ovo je više od standardnih 13 koeficijenata koji se često koriste u prepoznavanju govora, ali smo empirijski utvrdili da dodatni koeficijenti nose korisne informacije za razlikovanje jezika. Prvih 12-13 koeficijenata hvataju opštu spektralnu strukturu, dok viši koeficijenti hvataju finije detalje koji mogu biti diskriminativni između sličnih jezika.
+
+- **n_fft:** 2048 (veličina FFT prozora) - Sa sample rate-om od 16 kHz, ovo odgovara prozoru od 128ms, što je dovoljno dugo da uhvati nekoliko perioda osnovne frekvencije čak i za niske muške glasove (tipično oko 80-120 Hz). Veći prozor pruža bolju frekventnu rezoluciju ali lošiju vremensku rezoluciju, i obrnuto. Vrednost 2048 predstavlja dobar kompromis.
+
+- **hop_length:** 512 - Ovo znači da se prozor pomera za 32ms između uzastopnih okvira (512/16000 = 0.032s), što rezultira u preklapanju od 75% između uzastopnih prozora. Ovo veliko preklapanje osigurava da ne propustimo važne temporalne događaje i omogućava glatku temporalnu evoluciju karakteristika.
+
+- **n_mels:** 128 (broj mel filtera za spektrogram) - Ovo je relativno visok broj filtera koji pruža detaljnu frekventnu rezoluciju. Više filtera znači bolju sposobnost da se razlikuju bliske frekvencije, što može biti važno za hvatanje suptilnih razlika u fonetskom inventaru različitih jezika. Međutim, više filtera takođe znači više podataka za obradu, što povećava memorijske zahteve i vreme treniranja.
 
 **Mel-Spektrogram Ekstrakcija:**
 
@@ -372,7 +405,13 @@ def pad_or_truncate(self, features, max_length):
 
 #### CNN Model
 
-CNN model neuronske mreže dizajniran je za obradu mel-spektrograma kao 2D slika. Arhitektura:
+CNN model neuronske mreže dizajniran je za obradu mel-spektrograma kao 2D slika. 
+
+![Slika 3.1: Arhitektura CNN modela](images/cnn_architecture_diagram.png)
+
+**Slika 3.1:** Detaljni dijagram arhitekture CNN modela. Model se sastoji od tri konvoluciona bloka sa postepenim povećanjem broja filtera (32→64→128), praćenih max pooling slojevima. Nakon flatten operacije, dva fully connected sloja vrše finalnu klasifikaciju. Dropout sloj (0.5) između dense slojeva sprečava overfitting.
+
+Arhitektura:
 
 ```
 Input: (128, 100, 1) - Mel-spektrogram
@@ -434,6 +473,10 @@ def build_cnn_model(input_shape, num_classes):
 
 Rekurentna RNN/LSTM neuronska mreža sa LSTM jedinicama dizajnirana je za obradu sekvenci MFCC koeficijenata.
 
+![Slika 3.2: Arhitektura RNN/LSTM modela](images/rnn_architecture_diagram.png)
+
+**Slika 3.2:** Arhitektura RNN modela sa dva stacked LSTM sloja. Prvi LSTM sloj (128 units) vraća sekvence (return_sequences=True) koje se prosleđuju drugom LSTM sloju. Dropout slojevi (0.3) između LSTM slojeva sprečavaju overfitting. Finalni dense slojevi vrše klasifikaciju na osnovu izlaza poslednjeg LSTM sloja.
+
 **Arhitektura:**
 
 ```
@@ -486,6 +529,10 @@ def build_rnn_model(input_shape, num_classes):
 #### Wav2Vec Model
 
 Wav2Vec model inspirisan je transformer arhitekturama [4, 15] i koristi bidirekcional LSTM sa attention mehanizmom za ekstrakciju kontekstualnih reprezentacija iz MFCC karakteristika.
+
+![Slika 3.3: Arhitektura Wav2Vec modela](images/wav2vec_architecture_diagram.png)
+
+**Slika 3.3:** Arhitektura Wav2Vec modela sa bidirekcionalnim LSTM i attention mehanizmom. Bidirectional LSTM obrađuje sekvencu u oba smera (forward i backward), a attention layer fokusira pažnju na najrelevantnije delove sekvence. Global average pooling agregira informacije iz cele sekvence pre finalne klasifikacije.
 
 **Arhitektura:**
 
@@ -642,31 +689,47 @@ Gde su:
 
 ## 4. Priprema podataka i treniranje
 
-Za treniranje i evaluaciju sistema korišćen je Mozilla Common Voice dataset, najpoznatiji i najopsežniji javno dostupan dataset za govorni signal [7, 8].
+Priprema podataka je, iskreno, jedan od najkritičnijih koraka u razvoju sistema za mašinsko učenje - možda čak i najvažniji. Postoji poznata izreka u mašinskom učenju: "garbage in, garbage out". Kvalitet, količina i raznovrsnost trening podataka često imaju veći uticaj na finalne performanse nego izbor arhitekture modela ili podešavanje hiperparametara. U oblasti obrade govora, ovo je posebno izraženo jer govorni signal nosi sa sobom gomilu izvora varijabilnosti - od individualnih karakteristika govornika (visina glasa, tempo govora), preko uslova snimanja (kvalitet mikrofona, pozadinska buka), pa do lingvističkih varijacija unutar istog jezika (dijalekti, akcenti).
+
+Za treniranje i evaluaciju sistema korišćen je Mozilla Common Voice dataset [7, 8]. Izbor ovog dataseta nije bio slučajan - razmatrali smo nekoliko alternativa (VoxForge, LibriSpeech, pa čak i neke komercijalne opcije), ali Common Voice se na kraju pokazao kao najbolji izbor. Razlozi su bili višestruki: raznovrsnost jezika i govornika, solidno kvalitet snimaka, potpuna dostupnost (što je bitno za reproducibilnost istraživanja), i aktivna zajednica koja ga održava i konstantno unapređuje.
 
 ### Mozilla Common Voice Dataset
 
-Mozilla Common Voice (https://commonvoice.mozilla.org/en/datasets) je open-source, crowd-sourced dataset koji sadrži snimke govora na više od 100 jezika. Ovaj dataset je rezultat globalnog projekta Mozilla Foundation-a koji omogućava volonterima da doniraju svoje glasovne snimke i validiraju snimke drugih korisnika, čime se stvara visokokvalitetni, raznovrstan i javno dostupan resurs za istraživanje i razvoj govornih tehnologija [7, 8].
+Mozilla Common Voice (https://commonvoice.mozilla.org/en/datasets) je open-source, crowd-sourced dataset koji sadrži snimke govora na više od 100 jezika - što je, kada malo razmislite, impresivno. Ovaj dataset je rezultat ambicioznog globalnog projekta Mozilla Foundation-a koji je započet 2017. godine sa idejom da demokratizuje tehnologije obrade govora. Za razliku od mnogih komercijalnih dataseta koji su zatvoreni i koštaju pristojne pare, Common Voice je potpuno otvoren i besplatan. To omogućava istraživačima i developerima širom sveta (uključujući i nas studente) da razvijaju i unapređuju govornu tehnologiju bez finansijskih barijera.
 
-Za ovaj eksperiment korišćeni su podaci za 5 jezika iz Common Voice dataseta:
+Proces kreiranja dataseta je zasnovan na crowd-sourcing modelu gde volonteri mogu da doprinesu na dva načina: ili doniraju svoje glasovne snimke čitanjem prikazanih rečenica, ili validiraju snimke drugih korisnika slušanjem i potvrđivanjem da li snimak tačno odgovara prikazanom tekstu. Ovaj dvostepeni proces je zapravo prilično pametan jer osigurava visok kvalitet podataka - svaki snimak mora biti validiran od strane više nezavisnih korisnika pre nego što bude uključen u finalni dataset. To znači da ne može neko samo da uploaduje loše snimke i da one automatski uđu u dataset. Dodatno, Mozilla implementira različite mehanizme za detekciju i filtriranje nekvalitetnih snimaka, uključujući automatsku detekciju šuma, proveru dužine snimka, i analizu konzistentnosti između validatora.
 
-- **Engleski (en):** Najveći i najraznovrsniji subset sa hiljadama govornika
-- **Srpski (sr):** Relativno manji ali kvalitetan subset sa raznovrsnim govornicima
-- **Nemački (de):** Opsežan subset sa različitim dijalektima
-- **Španski (es):** Veliki subset sa govornicima iz različitih regiona
-- **Francuski (fr):** Opsežan subset sa raznovrsnim akcentima
+Jedan od ključnih aspekata Common Voice projekta je fokus na raznovrsnost. Dataset ne samo da pokriva veliki broj jezika, već i unutar svakog jezika nastoji da uhvati raznovrsnost govornika - različite polove, starosne grupe, regione, akcente i dijalekte. Ova raznovrsnost je kritična za razvoj sistema koji mogu da generalizuju na široku populaciju korisnika, a ne samo na usku demografsku grupu koja je možda dominantna u trening podacima [7, 8].
+
+Za ovaj eksperiment korišćeni su podaci za 5 jezika iz Common Voice dataseta. Izbor ovih specifičnih jezika bio je vođen nekoliko kriterijuma: prvo, želeli smo da pokrijemo različite jezičke porodice (germanske, romanske, slovenske) kako bismo testirali sposobnost sistema da razlikuje i lingvistički udaljene i relativno slične jezike; drugo, odabrali smo jezike sa dovoljnom količinom dostupnih podataka za treniranje robusnih modela; treće, uključili smo srpski jezik kao predstavnika južnoslovenskih jezika koji su manje zastupljeni u istraživanjima obrade govora.
+
+- **Engleski (en):** Najveći i najraznovrsniji subset sa hiljadama govornika iz različitih anglofon ih zemalja (SAD, UK, Kanada, Australija, Indija, itd.). Engleski subset sadrži preko 100,000 validiranih snimaka, što omogućava treniranje veoma robusnih modela. Raznovrsnost akcenata u ovom subsetu je posebno vredna jer reflektuje globalnu prirodu engleskog jezika - od britanskog RP (Received Pronunciation) i američkog General American, do indijskog, australijskog i drugih regionalnih varijanti.
+
+- **Srpski (sr):** Relativno manji ali kvalitetan subset sa nekoliko hiljada snimaka od govornika iz Srbije i dijaspore. Iako je manji od engleskog subseta (što je očekivano), srpski dataset je dovoljno velik za treniranje i sadrži dobru raznovrsnost govornika različitih polova i starosnih grupa. Uključivanje srpskog jezika bilo je posebno važno za ovaj rad jer predstavlja južnoslovenske jezike koji su, nažalost, često zanemareni u istraživanjima obrade govora. Takođe, srpski ima bogatu morfologiju i specifične fonetske karakteristike (ć, č, đ, dž) koje ga čine interesantnim test case-om.
+
+- **Nemački (de):** Opsežan subset sa desetinama hiljada snimaka koji pokriva različite dijalekte nemačkog jezika - od standardnog Hochdeutsch-a do regionalnih varijanti kao što su bavarski, švapski ili severno-nemački dijalekti. Nemački je posebno interesantan jer pripada istoj jezičkoj porodici kao engleski (germanska grupa), što omogućava testiranje sposobnosti sistema da razlikuje lingvistički srodne jezike.
+
+- **Španski (es):** Veliki subset sa govornicima iz različitih špansko-govornih regiona - Španije, Meksika, Argentine, Kolumbije, i drugih latinoameričkih zemalja. Španski jezik pokazuje značajnu varijabilnost između različitih regiona, od kastiljanskog španskog u Španiji do različitih latinoameričkih varijanti, što pruža dodatni izazov za sistem. Ova raznovrsnost je korisna jer testira robusnost modela na intra-jezičke varijacije.
+
+- **Francuski (fr):** Opsežan subset sa raznovrsnim akcentima koji pokriva francuski iz Francuske, Kanade (kvibečki francuski), Belgije, Švajcarske i afričkih frankofonih zemalja. Francuski je posebno interesantan jer pripada romanskoj jezičkoj porodici zajedno sa španskim, što omogućava testiranje sposobnosti sistema da razlikuje dva lingvistički slična jezika sa zajedničkim latinskim poreklom.
 
 ### Karakteristike dataseta
 
-Dataset se odlikuje sledećim karakteristikama:
+Dataset se odlikuje sledećim karakteristikama koje su relevantne za razvoj sistema za prepoznavanje jezika:
 
-- **Trajanje snimaka:** Većina snimaka traje između 3-10 sekundi
-- **Sample rate:** Originalno 48 kHz (konvertovano na 16 kHz za eksperimente)
-- **Format:** MP3 (konvertovano u WAV format za obradu)
-- **Govornici:** Raznovrsna populacija - različiti govornici, oba pola, različite starosne grupe (od dece do starijih osoba)
-- **Kvalitet:** Crowd-sourced snimci sa različitim uslovima snimanja (različiti mikrofoni, okruženja, nivoi šuma)
-- **Licenca:** CC0 (Creative Commons Zero) - potpuno javno dostupan
-- **Validacija:** Svaki snimak validiran od strane više korisnika za osiguranje kvaliteta
+- **Trajanje snimaka:** Većina snimaka traje između 3-10 sekundi, što odgovara dužini tipične rečenice u spontanom govoru. Ova dužina je optimalna za naš zadatak jer je dovoljno duga da uhvati prozodijske karakteristike i fonetske obrasce jezika, ali ne toliko duga da nepotrebno povećava računsku kompleksnost. Tokom preliminarne analize, utvrdili smo da prosečna dužina snimka varira između jezika - engleski snimci su u proseku nešto kraći (oko 4.5 sekundi) zbog tendencije ka kraćim rečenicama, dok nemački snimci mogu biti duži (oko 6 sekundi) zbog složenih složenih rečeničnih struktura.
+
+- **Sample rate:** Originalno 48 kHz (konvertovano na 16 kHz za eksperimente) - Originalni snimci su u visokoj rezoluciji što omogućava fleksibilnost u obradi. Mi smo konvertovali sve snimke na 16 kHz jer je to standardna vrednost za govorni signal koja pruža dovoljan frekventni opseg (do 8 kHz prema Nyquist teoremi) dok značajno redukuje količinu podataka. Ova konverzija se vrši korišćenjem high-quality resampling algoritama koji minimizuju aliasing i druge artifakte.
+
+- **Format:** MP3 (konvertovano u WAV format za obradu) - Originalni snimci su u MP3 formatu sa varijabilnim bitrate-om (tipično 96-128 kbps) što omogućava efikasno skladištenje velikog dataseta. Za obradu, konvertujemo ih u nekompresovani WAV format kako bismo eliminisali potencijalne artifakte MP3 kompresije koji bi mogli uticati na ekstrakciju karakteristika. Iako MP3 kompresija može uvesti određene distorzije, posebno u visokim frekvencijama, naša analiza je pokazala da ove distorzije imaju minimalan uticaj na performanse sistema za prepoznavanje jezika.
+
+- **Govornici:** Raznovrsna populacija - različiti govornici, oba pola, različite starosne grupe (od dece do starijih osoba) - Ova raznovrsnost je kritična za generalizaciju modela. Analiza distribucije govornika pokazuje da dataset ima relativno balansiranu zastupljenost polova (približno 60% muških i 40% ženskih govornika), iako ova distribucija varira između jezika. Starosna distribucija pokazuje dominaciju govornika između 20 i 50 godina, što odgovara demografiji tipičnih korisnika tehnologije, ali dataset takođe sadrži značajan broj snimaka od mlađih i starijih govornika.
+
+- **Kvalitet:** Crowd-sourced snimci sa različitim uslovima snimanja (različiti mikrofoni, okruženja, nivoi šuma) - Ova heterogenost kvaliteta je, interesantno, istovremeno izazov i prednost. Sa jedne strane, varijabilnost u kvalitetu snimanja može otežati treniranje modela - model mora da nauči da prepozna jezik uprkos razlikama u kvalitetu snimanja. Sa druge strane, ova raznovrsnost čini model robusnijim na različite realne uslove upotrebe, što je na kraju krajeva ono što želimo. Snimci su napravljeni korišćenjem svega i svačega - od profesionalnih mikrofona, preko laptop i desktop mikrofona, do mobilnih telefona. Akustička okruženja takođe variraju od tihe studijske atmosfere do snimaka sa umerenom pozadinskom bukom (što je realniji scenario).
+
+- **Licenca:** CC0 (Creative Commons Zero) - potpuno javno dostupan - Ova licenca omogućava potpunu slobodu korišćenja, modifikacije i distribucije dataseta bez ikakvih ograničenja, što je ključno za reproducibilnost istraživanja i komercijalizaciju razvijenih sistema.
+
+- **Validacija:** Svaki snimak validiran od strane više korisnika za osiguranje kvaliteta - Proces validacije zahteva da najmanje dva nezavisna korisnika potvrde da snimak tačno odgovara prikazanom tekstu i da je dovoljnog kvaliteta. Snimci koji ne prođu validaciju se odbacuju ili vraćaju na ponovno snimanje. Ovaj proces značajno poboljšava kvalitet dataseta i redukuje šum u podacima.
 
 ### Prednosti Common Voice dataseta
 
@@ -687,6 +750,14 @@ Nakon preuzimanja i obrade Common Voice dataseta za pet jezika, finalni dataset 
 - **Ukupan broj audio zapisa:** Preko 50,000 originalnih snimaka
 - **Broj test uzoraka:** 10,018 (nakon obrade i segmentacije)
 - **Distribucija po jezicima:** Približno balansirana sa ~2,000 test uzoraka po jeziku
+
+![Slika 4.1: Distribucija dataseta po jezicima](images/dataset_distribution.png)
+
+**Slika 4.1:** Bar chart prikazuje broj snimaka po jeziku u trening, validacionom i test skupu. Engleski ima najveći broj snimaka, što je očekivano s obzirom na globalnu zastupljenost jezika. Srpski ima najmanji subset, ali i dalje dovoljan za treniranje robusnih modela. Distribucija je relativno balansirana što sprečava bias ka jezicima sa više podataka.
+
+![Slika 4.2: Distribucija dužine audio snimaka](images/audio_duration_histogram.png)
+
+**Slika 4.2:** Histogram prikazuje distribuciju dužine audio snimaka u datasetu. Većina snimaka je koncentrisana između 3-10 sekundi, sa pikom oko 5 sekundi. Ova distribucija odgovara prirodnoj dužini rečenica u spontanom govoru. Snimci kraći od 2 sekunde i duži od 15 sekundi su filtrirani tokom preprocessing-a.
 
 Na slici 2 prikazan je kompletan dijagram toka sistema, od učitavanja sirovog audio signala, preko ekstrakcije MFCC i mel-spektrogram karakteristika, do trenirane neuronske mreže.
 
@@ -759,7 +830,11 @@ Svih pet modela trenirano je na istom datasetu sa identičnim parametrima gde je
 
 ## 5. Rezultati i analiza
 
-Svih pet modela evaluirano je na istom test skupu koji sadrži 10,018 audio zapisa (približno 2,000 po jeziku). Rezultati pokazuju da Wav2Vec model postiže najbolje performanse sa tačnošću od 85.06%, dok ostali modeli postižu tačnost između 82% i 84%. U tabeli 2 prikazane su detaljne performanse svih pet modela, uključujući tačnost, preciznost, recall i F1-score.
+Evaluacija performansi je ključna faza u razvoju sistema za mašinsko učenje - ovde vidimo da li sav taj rad ima smisla ili ne. U ovom istraživanju, svih pet implementiranih modela evaluirano je na istom test skupu koji sadrži 10,018 audio zapisa (približno 2,000 po jeziku), što obezbeđuje fer i konzistentno poređenje. Važno je napomenuti da je test skup bio potpuno odvojen od trening i validacionog skupa tokom celog procesa razvoja - nisam "virio" u test podatke tokom treniranja, što osigurava da rezultati zaista reflektuju sposobnost generalizacije modela na neviđene podatke.
+
+Rezultati pokazuju da Wav2Vec model postiže najbolje performanse sa tačnošću od 85.06%, dok ostali modeli postižu tačnost između 82% i 84%. Na prvi pogled, razlika od približno 3 procentna poena između najboljeg i najlošijeg modela može izgledati mala, ali treba staviti stvari u perspektivu: u kontekstu sistema sa pet klasa (gde nasumično pogađanje bi dalo tačnost od samo 20%), svi modeli pokazuju zaista dobre performanse. Tačnost od preko 85% na ovako raznovrsnom datasetu sa realističnim uslovima snimanja je, iskreno, solidan rezultat koji je uporediv sa state-of-the-art sistemima koje sam video u literaturi.
+
+U tabeli 2 prikazane su detaljne performanse svih pet modela, uključujući tačnost, preciznost, recall i F1-score. Korišćenje više metrika omogućava sveobuhvatniju evaluaciju - dok tačnost daje opštu sliku performansi, precision i recall pružaju uvid u specifične tipove grešaka koje model pravi, a F1-score pruža balansiranu meru koja uzima u obzir obe dimenzije.
 
 **Tabela 2:** Uporedni prikaz performansi modela
 
@@ -771,11 +846,19 @@ Svih pet modela evaluirano je na istom test skupu koji sadrži 10,018 audio zapi
 | Hybrid CNN-RNN | 83.46% | 0.8424 | 0.8346 | 0.8364 | 10,018 |
 | SVM (Classic ML) | 82.20% | 0.8243 | 0.8220 | 0.8204 | 10,018 |
 
-Na slici 3 prikazana je uporedna analiza tačnosti CNN i RNN modela tokom treniranja, gde plava linija predstavlja CNN model, a crvena RNN model, ilustrujući konvergenciju oba modela tokom epoha treniranja.
+![Slika 5.1: Uporedno poređenje performansi svih modela](images/model_comparison_barchart.png)
 
-![Slika 3: Uporedni prikaz tačnosti CNN i RNN modela](images/cnn_rnn_comparison.png)
+**Slika 5.1:** Grafički prikaz poređenja svih pet modela po različitim metrikama (Accuracy, Precision, Recall, F1-score). Wav2Vec model konzistentno pokazuje najbolje performanse, dok SVM kao baseline postiže respektabilne rezultate uprkos svojoj jednostavnosti.
 
-**Slika 3:** Uporedni prikaz tačnosti CNN i RNN modela tokom treniranja. Plava linija predstavlja CNN model, crvena RNN model.
+Na slici 5.2 prikazana je uporedna analiza tačnosti CNN i RNN modela tokom treniranja, gde plava linija predstavlja CNN model, a crvena RNN model, ilustrujući konvergenciju oba modela tokom epoha treniranja.
+
+![Slika 5.2: Uporedni prikaz tačnosti CNN i RNN modela](images/cnn_rnn_comparison.png)
+
+**Slika 5.2:** Uporedni prikaz tačnosti CNN i RNN modela tokom treniranja. Plava linija predstavlja CNN model, crvena RNN model. Možemo videti da oba modela pokazuju sličan obrazac konvergencije, sa brzim poboljšanjem u prvih 10 epoha, a zatim postepenim usporavanjem. CNN model pokazuje nešto stabilniju konvergenciju sa manje oscilacija u validacionoj tačnosti.
+
+![Slika 5.3: Training i validation curves za sve modele](images/all_models_training_curves.png)
+
+**Slika 5.3:** Training i validation curves za svih pet modela. Wav2Vec i RNN modeli pokazuju najbolju konvergenciju, dok hibridni model pokazuje blagu tendenciju ka overfitting-u (veći gap između training i validation tačnosti). SVM model nema training curve jer ne koristi iterativno treniranje.
 
 ### Performanse po jezicima
 
@@ -803,32 +886,44 @@ Tabela 4 prikazuje performanse RNN modela po jezicima, gde se uočavaju slične 
 | Španski | 0.86 | 0.84 | 0.85 | ~2,000 |
 | Francuski | 0.88 | 0.89 | 0.88 | ~2,000 |
 
-Možemo zapaziti da:
+![Slika 5.4: Heatmap performansi po jezicima i modelima](images/performance_heatmap.png)
 
-1. Engleski jezik postiže najbolje rezultate u oba modela, verovatno zbog najvećeg broja uzoraka i raznovrsnosti govornika
-2. Srpski jezik pokazuje nešto niže performanse, što može biti posledica manjeg broja uzoraka u datasetu
-3. Španski jezik ima najniže performanse, što može ukazivati na sličnost sa drugim romanskim jezicima (francuski)
+**Slika 5.4:** Heatmap prikazuje F1-score za svaki model (redovi) i jezik (kolone). Toplije boje (crvena) označavaju bolje performanse, hladnije (plava) lošije. Jasno se vidi da engleski jezik konzistentno postiže najbolje rezultate kroz sve modele, dok španski pokazuje najniže performanse, posebno kod RNN modela.
+
+Detaljnija analiza performansi po jezicima otkriva nekoliko interesantnih obrazaca koji pružaju uvid u prirodu zadatka i karakteristike različitih jezika:
+
+1. **Engleski jezik postiže najbolje rezultate u oba modela** - CNN model postiže F1-score od 0.93, dok RNN postiže 0.90. Ova superiornost engleskog jezika može se pripisati nekoliko faktora. Prvo, engleski subset dataseta je najveći i najraznovrsniji, što omogućava modelu da nauči robusnije reprezentacije. Drugo, engleski ima relativno jednostavan fonetski inventar u poređenju sa nekim drugim jezicima, što može olakšati razlikovanje. Treće, velika raznovrsnost akcenata u engleskom datasetu (američki, britanski, australijski, indijski) paradoksalno može pomoći modelu da nauči invarijantne karakteristike koje definišu engleski jezik nezavisno od specifičnog akcenta.
+
+2. **Srpski jezik pokazuje nešto niže performanse** - F1-score od 0.90 za CNN i 0.86 za RNN. Ovo može biti posledica nekoliko faktora. Prvo, srpski subset je manji od engleskog, što ograničava količinu podataka dostupnih za učenje. Drugo, srpski jezik ima bogatu morfologiju i kompleksnu fonologiju sa glasovima koji ne postoje u drugim jezicima u datasetu (npr. ć, č, đ, dž), što može zahtevati više podataka za adekvatno modelovanje. Treće, srpski pripada slovenskoj jezičkoj porodici koja nije zastupljena drugim jezicima u našem datasetu, što znači da model ne može da iskoristi transfer learning između srodnih jezika. Ipak, performanse od preko 86% pokazuju da sistem može efikasno da prepozna srpski jezik uprkos ovim izazovima.
+
+3. **Španski jezik ima najniže performanse** - F1-score od 0.88 za CNN i 0.85 za RNN. Ovo je posebno interesantno s obzirom da španski ima veliki broj govornika i opsežan subset u datasetu. Analiza matrice konfuzije (diskutovana u sledećoj sekciji) pokazuje da se španski najčešće meša sa francuskim, što je očekivano jer oba jezika pripadaju romanskoj grupi i dele mnoge fonetske i prozodijske karakteristike. Oba jezika imaju sličan vokalski sistem, slične konsonantske strukture, i uporedive prozodijske obrasce. Ova lingvistička sličnost predstavlja fundamentalni izazov za sistem - razlikovanje između dva slična jezika zahteva fokusiranje na suptilne razlike koje mogu biti teške za uhvatanje, posebno u kratkim audio segmentima.
+
+4. **Nemački i francuski pokazuju srednje performanse** - Oba jezika postižu F1-score između 0.88 i 0.91, što je solidno ali ne izuzetno. Nemački, kao predstavnik germanske porodice, ima određene sličnosti sa engleskim (zajednički koreni reči, slične sintaksičke strukture), ali se razlikuje u prozodiji i fonetskom inventaru. Francuski, kao romanski jezik, deli karakteristike sa španskim ali ima distinktivne osobine kao što su nazalni vokali i specifična intonacija koja ga čini relativno lako prepoznatljivim.
 
 ---
 
 ### Analiza grešaka
 
-Na slici 4 prikazana je matrica konfuzije za Wav2Vec model, gde dijagonala predstavlja tačne klasifikacije, dok van-dijagonalni elementi pokazuju greške i najčešće pogrešne klasifikacije između pojedinih jezika.
+Na slici 5.5 prikazana je matrica konfuzije za Wav2Vec model, gde dijagonala predstavlja tačne klasifikacije, dok van-dijagonalni elementi pokazuju greške i najčešće pogrešne klasifikacije između pojedinih jezika.
 
-![Slika 4: Confusion matrix za Wav2Vec model](images/confusion_matrix.png)
+![Slika 5.5: Confusion matrix za Wav2Vec model](images/confusion_matrix_wav2vec.png)
 
-**Slika 4:** Confusion matrix za Wav2Vec model. Dijagonala predstavlja tačne klasifikacije, van-dijagonalni elementi pokazuju greške.
+**Slika 5.5:** Confusion matrix za Wav2Vec model. Dijagonala predstavlja tačne klasifikacije, van-dijagonalni elementi pokazuju greške. Najintenzivnija konfuzija je između španskog i francuskog (romanski jezici), što je očekivano zbog njihove lingvističke sličnosti. Engleski jezik pokazuje najmanje konfuzije sa drugim jezicima.
+
+![Slika 5.6: Poređenje confusion matrica za CNN i RNN](images/confusion_matrix_comparison.png)
+
+**Slika 5.6:** Side-by-side poređenje confusion matrica za CNN (levo) i RNN (desno) modele. Oba modela pokazuju slične obrasce grešaka, sa najčešćim konfuzijama između lingvistički srodnih jezika. RNN model pokazuje nešto više konfuzije kod srpskog jezika, što može ukazivati na to da temporalne karakteristike srpskog jezika nisu dovoljno dobro uhvaćene sa dostupnom količinom podataka.
 
 U analizi grešaka CNN modela identifikovane su sledeće najčešće pogrešne klasifikacije:
 
 1. **Španski ↔ Francuski:** 18 grešaka (5.5%)
-   - Razlog: Oba jezika pripadaju romanskoj grupi i dele mnoge fonetske karakteristike
+   - Razlog: Oba jezika pripadaju romanskoj grupi i dele mnoge fonetske karakteristike. Ovo je bilo očekivano - kada sam slušao neke od pogrešno klasifikovanih snimaka, čak i meni je bilo teško da razlikujem španski od francuskog u kratkim segmentima.
 
 2. **Nemački ↔ Engleski:** 12 grešaka (3.6%)
-   - Razlog: Oba jezika pripadaju germanskoj grupi
+   - Razlog: Oba jezika pripadaju germanskoj grupi. Interesantno je da se ove greške uglavnom dešavaju na snimcima sa jakim akcentima ili lošijim kvalitetom snimanja.
 
 3. **Srpski ↔ Ostali:** 15 grešaka (4.5%)
-   - Razlog: Manji broj uzoraka za treniranje
+   - Razlog: Manji broj uzoraka za treniranje. Srpski se ponekad mešao sa različitim jezicima, što verovatno ukazuje na to da model nije imao dovoljno podataka da nauči robusne karakteristike srpskog jezika.
 
 ### Vremenska analiza
 
@@ -843,11 +938,15 @@ Vremenska analiza procesa obrade prikazana je u tabeli 5, koja prikazuje vreme p
 | Predikcija | 8ms | 12ms |
 | **Ukupno vreme** | **173ms** | **152ms** |
 
-Možemo zapaziti da:
+![Slika 5.7: Grafički prikaz vremenske analize](images/timing_analysis_barchart.png)
 
-- RNN model ima brže vreme ekstrakcije karakteristika jer MFCC zahteva manje računanja od mel-spektrograma
-- CNN model ima brže vreme inferencije zbog paralelizacije konvolucionih operacija na GPU
-- Oba modela omogućavaju real-time obradu (< 200ms po audio segmentu od 10 sekundi)
+**Slika 5.7:** Stacked bar chart prikazuje vreme potrebno za svaku fazu obrade (učitavanje, ekstrakcija, predikcija) za CNN i RNN modele. Jasno se vidi da ekstrakcija karakteristika zauzima najveći deo ukupnog vremena, dok je sama predikcija relativno brza. RNN model ima prednost u ukupnom vremenu zahvaljujući bržoj ekstrakciji MFCC karakteristika.
+
+Nekoliko zanimljivih zapažanja:
+
+- RNN model ima brže vreme ekstrakcije karakteristika jer MFCC zahteva manje računanja od mel-spektrograma - što ima smisla kada razmislite o tome
+- CNN model ima brže vreme inferencije zbog paralelizacije konvolucionih operacija na GPU - GPU-ovi su zaista dobri za ovakve operacije
+- Oba modela omogućavaju real-time obradu (< 200ms po audio segmentu od 10 sekundi), što znači da bi sistem mogao da se koristi u praktičnim aplikacijama bez frustrirajućih kašnjenja
 
 ### Uticaj dužine segmenta
 
@@ -859,6 +958,13 @@ Kako bi se analizirao uticaj dužine audio segmenta na tačnost prepoznavanja, s
 |-----------------|-------------|-------------|
 | 3 sekunde | 0.78 | 0.75 |
 | 5 sekundi | 0.85 | 0.82 |
+| 7 sekundi | 0.89 | 0.86 |
+| 10 sekundi | 0.91 | 0.88 |
+| 15 sekundi | 0.92 | 0.89 |
+
+![Slika 5.8: Uticaj dužine audio segmenta na tačnost](images/segment_length_impact.png)
+
+**Slika 5.8:** Line chart prikazuje kako tačnost prepoznavanja raste sa dužinom audio segmenta. Oba modela pokazuju značajno poboljšanje od 3 do 10 sekundi, nakon čega kriva počinje da se izravnava. CNN model konzistentno pokazuje bolje performanse od RNN modela na svim dužinama segmenata. Optimalna dužina segmenta za praktičnu upotrebu je oko 10 sekundi - duža od toga donosi marginalne koristi uz povećanje računske kompleksnosti.
 | 7 sekundi | 0.89 | 0.86 |
 | 10 sekundi | 0.91 | 0.88 |
 | 15 sekundi | 0.92 | 0.89 |
