@@ -347,6 +347,40 @@ def evaluate_command(args):
         sys.exit(1)
 
 
+def realtime_command(args):
+    """Komanda za pokretanje real-time GUI aplikacije."""
+    console.print(Panel.fit(
+        "[bold cyan]Real-time Language Recognition[/bold cyan]",
+        border_style="cyan"
+    ))
+    
+    import subprocess
+    
+    # Pripremi argumente za realtime_app.py
+    realtime_args = ['python', 'realtime_app.py']
+    
+    # Dodaj model-size ako je specificiran
+    if args.model_size:
+        realtime_args.extend(['--model-size', args.model_size])
+        console.print(f"\n[cyan]Pokretanje sa Whisper modelom: {args.model_size}[/cyan]\n")
+    else:
+        console.print(f"\n[cyan]Pokretanje sa default Whisper modelom (base)[/cyan]\n")
+    
+    try:
+        # Pokreni realtime_app.py
+        result = subprocess.run(realtime_args, check=True)
+        
+        if result.returncode == 0:
+            console.print(f"\n[bold green]✓ Aplikacija zatvorena[/bold green]")
+        
+    except subprocess.CalledProcessError as e:
+        console.print(f"\n[red]Greška tokom pokretanja aplikacije: {e}[/red]")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        console.print(f"\n[yellow]Aplikacija prekinuta od strane korisnika.[/yellow]")
+        sys.exit(130)
+
+
 def batch_recognize_command(args):
     """Komanda za batch prepoznavanje jezika."""
     console.print(Panel.fit(
@@ -521,6 +555,10 @@ Primeri korišćenja:
 
   # Batch prepoznavanje
   python cli.py batch-recognize --audio-dir ./samples --model models/rnn_model.h5
+
+  # Real-time prepoznavanje sa GUI
+  python cli.py realtime
+  python cli.py realtime --model-size small
         """
     )
     
@@ -552,6 +590,15 @@ Primeri korišćenja:
     batch_parser.add_argument('--model', required=True, help='Putanja do treniranog modela')
     batch_parser.add_argument('--top-k', type=int, default=3, help='Broj top jezika (default: 3)')
     
+    # Realtime komanda
+    realtime_parser = subparsers.add_parser('realtime', help='Pokreni real-time GUI za prepoznavanje jezika')
+    realtime_parser.add_argument(
+        '--model-size',
+        type=str,
+        choices=['tiny', 'base', 'small', 'medium', 'large'],
+        help='Veličina Whisper modela (default: base)'
+    )
+    
     # Parse argumenti
     args = parser.parse_args()
     
@@ -568,6 +615,8 @@ Primeri korišćenja:
         evaluate_command(args)
     elif args.command == 'batch-recognize':
         batch_recognize_command(args)
+    elif args.command == 'realtime':
+        realtime_command(args)
 
 
 if __name__ == '__main__':
