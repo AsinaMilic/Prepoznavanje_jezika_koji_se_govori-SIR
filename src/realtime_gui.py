@@ -13,6 +13,7 @@ from typing import Optional
 import yaml
 
 from src.whisper_recognizer import WhisperLanguageRecognizer, ModelLoadError, WhisperRecognizerError
+from src.groq_recognizer import GroqLanguageRecognizer, GroqRecognizerError
 from src.audio_stream_handler import AudioStreamHandler, MicrophoneError, AudioStreamError
 from src.session_history import SessionHistory, DetectionResult
 
@@ -40,14 +41,16 @@ class RealtimeLanguageGUI:
         
         # Initialize components
         self.whisper_recognizer: Optional[WhisperLanguageRecognizer] = None
+        self.groq_recognizer: Optional[GroqLanguageRecognizer] = None
         self.audio_handler: Optional[AudioStreamHandler] = None
         self.session_history = SessionHistory()
         
         # State variables
         self.is_processing = False
+        self.use_groq = False  # Flag to switch between Whisper and Groq
         
-        # Initialize Whisper recognizer
-        self._initialize_whisper()
+        # Initialize recognizers
+        self._initialize_recognizers()
         
         # Setup GUI layout
         self._setup_gui()
@@ -69,24 +72,42 @@ class RealtimeLanguageGUI:
                 }
             }
     
-    def _initialize_whisper(self):
-        """Initialize WhisperLanguageRecognizer with error handling."""
-        try:
-            model_size = self.config.get('whisper', {}).get('model_size', 'base')
-            self.whisper_recognizer = WhisperLanguageRecognizer(model_size=model_size)
-        except ModelLoadError as e:
-            messagebox.showerror(
-                "Model Load Error",
-                f"Failed to load Whisper model.\n\n{str(e)}\n\n"
-                "Please install openai-whisper:\npip install openai-whisper"
-            )
-            self.whisper_recognizer = None
-        except Exception as e:
+    def _initialize_recognizers(self):
+        """Initialize both Whisper and Groq recognizers with error handling."""
+        # Try to initialize Groq first (faster, cloud-based)
+        groq_api_key = self.config.get('groq', {}).get('api_key', '')
+        if groq_api_key:
+            try:
+                groq_model = self.config.get('groq', {}).get('model', 'whisper-large-v3')
+                self.groq_recognizer = GroqLanguageRecognizer(api_key=groq_api_key, model=groq_model)
+                self.use_groq = True
+                print("Groq API initialized successfully")
+            except GroqRecognizerError as e:
+                print(f"Failed to initialize Groq recognizer: {e}")
+                self.groq_recognizer = None
+        
+        # Try to initialize Whisper as fallback
+        if not self.use_groq:
+            try:
+                model_size = self.config.get('whisper', {}).get('model_size', 'base')
+                self.whisper_recognizer = WhisperLanguageRecognizer(model_size=model_size)
+                print("Whisper model initialized successfully")
+            except ModelLoadError as e:
+                print(f"Failed to load Whisper model: {e}")
+                self.whisper_recognizer = None
+            except Exception as e:
+                print(f"Failed to initialize Whisper recognizer: {e}")
+                self.whisper_recognizer = None
+        
+        # Show error if neither is available
+        if not self.groq_recognizer and not self.whisper_recognizer:
             messagebox.showerror(
                 "Initialization Error",
-                f"Failed to initialize Whisper recognizer:\n{str(e)}"
+                "Failed to initialize any language recognizer.\n\n"
+                "Please either:\n"
+                "1. Add Groq API key to config.yaml, or\n"
+                "2. Install openai-whisper: pip install openai-whisper"
             )
-            self.whisper_recognizer = None
     
     def _setup_gui(self):
         """Setup the GUI layout and all widgets."""
@@ -148,8 +169,8 @@ class RealtimeLanguageGUI:
         )
         self.file_button.pack(side=tk.LEFT)
         
-        # Disable buttons if Whisper is not available
-        if not self.whisper_recognizer:
+        # Disable buttons if no recognizer is available
+        if not self.whisper_recognizer and not self.groq_recognizer:
             self.start_button.config(state=tk.DISABLED)
             self.file_button.config(state=tk.DISABLED)
         
@@ -232,10 +253,10 @@ class RealtimeLanguageGUI:
     
     def start_recording(self):
         """Handler for Start Recording button."""
-        if not self.whisper_recognizer:
+        if not self.whisper_recognizer and not self.groq_recognizer:
             messagebox.showerror(
                 "Error",
-                "Whisper recognizer is not available. Please check initialization."
+                "No language recognizer is available. Please check initialization."
             )
             return
         
@@ -329,8 +350,14 @@ class RealtimeLanguageGUI:
                 silence_threshold = whisper_config.get('silence_threshold', 0.005)
                 min_confidence = whisper_config.get('min_confidence', 0.25)
                 
+                # Choose recognizer (Groq preferred if available)
+                if self.use_groq and self.groq_recognizer:
+                    recognizer = self.groq_recognizer
+                else:
+                    recognizer = self.whisper_recognizer
+                
                 # Recognize language from audio
-                results = self.whisper_recognizer.recognize_from_audio(
+                results = recognizer.recognize_from_audio(
                     audio_data, 
                     sample_rate,
                     silence_threshold=silence_threshold,
@@ -360,7 +387,7 @@ class RealtimeLanguageGUI:
                     # No speech detected or confidence too low
                     self.root.after(0, lambda: self.clear_results())
                 
-            except WhisperRecognizerError as e:
+            except (WhisperRecognizerError, GroqRecognizerError) as e:
                 self.root.after(0, lambda: messagebox.showerror(
                     "Recognition Error",
                     f"Failed to recognize language:\n{str(e)}"
@@ -382,10 +409,10 @@ class RealtimeLanguageGUI:
     
     def select_audio_file(self):
         """Handler for Select Audio File button."""
-        if not self.whisper_recognizer:
+        if not self.whisper_recognizer and not self.groq_recognizer:
             messagebox.showerror(
                 "Error",
-                "Whisper recognizer is not available. Please check initialization."
+                "No language recognizer is available. Please check initialization."
             )
             return
         
@@ -417,8 +444,14 @@ class RealtimeLanguageGUI:
                 silence_threshold = whisper_config.get('silence_threshold', 0.005)
                 min_confidence = whisper_config.get('min_confidence', 0.25)
                 
+                # Choose recognizer (Groq preferred if available)
+                if self.use_groq and self.groq_recognizer:
+                    recognizer = self.groq_recognizer
+                else:
+                    recognizer = self.whisper_recognizer
+                
                 # Recognize language from file
-                results = self.whisper_recognizer.recognize_from_file(
+                results = recognizer.recognize_from_file(
                     file_path,
                     silence_threshold=silence_threshold,
                     min_confidence=min_confidence
@@ -458,7 +491,7 @@ class RealtimeLanguageGUI:
                     ))
                     self.root.after(0, lambda: self.clear_results())
                 
-            except WhisperRecognizerError as e:
+            except (WhisperRecognizerError, GroqRecognizerError) as e:
                 error_msg = f"Failed to recognize language from file:\n{str(e)}"
                 self.root.after(0, lambda msg=error_msg: messagebox.showerror(
                     "Recognition Error",

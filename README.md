@@ -28,6 +28,20 @@ Potreban je Python 3.8 ili noviji.
 pip install -r requirements.txt
 ```
 
+## Real-time Prepoznavanje (GUI)
+
+Grafički interfejs za prepoznavanje jezika u realnom vremenu:
+
+```bash
+python realtime_app.py
+```
+
+**Groq API** - Brzo cloud-based prepoznavanje (konfigurisano u `config.yaml`):
+- Automatski koristi Groq API ako je dostupan
+- Fallback na lokalni Whisper model
+- Confidence scores bazirani na API metrikama
+- Implementacija: `src/groq_recognizer.py`
+
 ## Struktura Projekta
 
 ```
