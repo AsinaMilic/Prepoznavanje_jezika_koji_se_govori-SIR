@@ -33,11 +33,21 @@ class RealtimeLanguageGUI:
         # Load configuration
         self.config = self._load_config()
         
-        # Initialize main window
+        # Initialize main window with modern styling
         self.root = tk.Tk()
-        self.root.title("Real-time Language Recognition")
-        self.root.geometry("600x700")
+        self.root.title("Language Recognition")
+        self.root.geometry("700x800")
         self.root.resizable(False, False)
+        
+        # Modern color scheme
+        self.bg_color = "#ecf0f1"
+        self.primary_color = "#3498db"
+        self.success_color = "#27ae60"
+        self.danger_color = "#e74c3c"
+        self.warning_color = "#f39c12"
+        self.dark_color = "#2c3e50"
+        
+        self.root.configure(bg=self.bg_color)
         
         # Initialize components
         self.whisper_recognizer: Optional[WhisperLanguageRecognizer] = None
@@ -114,142 +124,226 @@ class RealtimeLanguageGUI:
         # Configure style
         style = ttk.Style()
         style.theme_use('clam')
+        style.configure('Title.TLabel', font=('Arial', 18, 'bold'))
+        style.configure('Accent.TButton', font=('Arial', 10, 'bold'))
         
         # Main container with padding
-        main_frame = ttk.Frame(self.root, padding="20")
+        main_frame = tk.Frame(self.root, bg=self.bg_color, padx=25, pady=20)
         main_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Title
-        title_label = ttk.Label(
-            main_frame,
-            text="Real-time Language Recognition",
-            font=("Arial", 16, "bold")
+        # Modern header with gradient-like effect
+        header_frame = tk.Frame(main_frame, bg="#2c3e50", height=100)
+        header_frame.pack(fill=tk.X, pady=(0, 25))
+        header_frame.pack_propagate(False)
+        
+        # Title container for better positioning
+        title_container = tk.Frame(header_frame, bg="#2c3e50")
+        title_container.place(relx=0.5, rely=0.5, anchor="center")
+        
+        title_label = tk.Label(
+            title_container,
+            text="🎙️ Language Recognition",
+            font=("Segoe UI", 24, "bold"),
+            bg="#2c3e50",
+            fg="white"
         )
-        title_label.pack(pady=(0, 20))
+        title_label.pack()
         
-        # Status section
-        status_frame = ttk.Frame(main_frame)
-        status_frame.pack(fill=tk.X, pady=(0, 15))
-        
-        ttk.Label(status_frame, text="Status:", font=("Arial", 10, "bold")).pack(side=tk.LEFT)
-        self.status_label = ttk.Label(
-            status_frame,
-            text="Idle",
-            font=("Arial", 10),
-            foreground="gray"
+        subtitle_label = tk.Label(
+            title_container,
+            text="Real-time Audio Language Detection",
+            font=("Segoe UI", 10),
+            bg="#2c3e50",
+            fg="#95a5a6"
         )
-        self.status_label.pack(side=tk.LEFT, padx=(5, 0))
+        subtitle_label.pack(pady=(5, 0))
         
-        # Control buttons section
-        button_frame = ttk.Frame(main_frame)
-        button_frame.pack(fill=tk.X, pady=(0, 20))
+        # Status section with modern card design
+        status_card = tk.Frame(main_frame, bg="white", relief=tk.FLAT, bd=0)
+        status_card.pack(fill=tk.X, pady=(0, 25))
         
-        self.start_button = ttk.Button(
+        status_inner = tk.Frame(status_card, bg="white", padx=20, pady=15)
+        status_inner.pack(fill=tk.X)
+        
+        tk.Label(
+            status_inner, 
+            text="Status", 
+            font=("Segoe UI", 10, "bold"),
+            bg="white",
+            fg="#7f8c8d"
+        ).pack(side=tk.LEFT)
+        
+        self.status_label = tk.Label(
+            status_inner,
+            text="● Ready",
+            font=("Segoe UI", 11, "bold"),
+            bg="white",
+            fg="#95a5a6"
+        )
+        self.status_label.pack(side=tk.RIGHT)
+        
+        # Modern control buttons with rounded appearance
+        button_frame = tk.Frame(main_frame, bg=self.bg_color)
+        button_frame.pack(fill=tk.X, pady=(0, 30))
+        
+        # Button styling
+        btn_style = {
+            'font': ('Segoe UI', 12, 'bold'),
+            'relief': tk.FLAT,
+            'bd': 0,
+            'cursor': 'hand2',
+            'height': 2,
+            'highlightthickness': 0
+        }
+        
+        self.start_button = tk.Button(
             button_frame,
-            text="Start Recording",
+            text="▶  Start Recording",
             command=self.start_recording,
-            width=20
+            bg=self.success_color,
+            fg="white",
+            activebackground="#229954",
+            **btn_style
         )
-        self.start_button.pack(side=tk.LEFT, padx=(0, 10))
+        self.start_button.pack(fill=tk.X, pady=(0, 12))
         
-        self.stop_button = ttk.Button(
+        self.stop_button = tk.Button(
             button_frame,
-            text="Stop Recording",
+            text="⏹  Stop Recording",
             command=self.stop_recording,
-            width=20,
-            state=tk.DISABLED
+            bg=self.danger_color,
+            fg="white",
+            activebackground="#c0392b",
+            state=tk.DISABLED,
+            **btn_style
         )
-        self.stop_button.pack(side=tk.LEFT, padx=(0, 10))
+        self.stop_button.pack(fill=tk.X, pady=(0, 12))
         
-        self.file_button = ttk.Button(
+        self.file_button = tk.Button(
             button_frame,
-            text="Select Audio File",
+            text="📂  Select Audio File",
             command=self.select_audio_file,
-            width=20
+            bg=self.primary_color,
+            fg="white",
+            activebackground="#2980b9",
+            **btn_style
         )
-        self.file_button.pack(side=tk.LEFT)
+        self.file_button.pack(fill=tk.X)
         
         # Disable buttons if no recognizer is available
         if not self.whisper_recognizer and not self.groq_recognizer:
             self.start_button.config(state=tk.DISABLED)
             self.file_button.config(state=tk.DISABLED)
         
-        # Current detection display section
-        detection_frame = ttk.LabelFrame(
-            main_frame,
-            text="Current Detection",
-            padding="15"
-        )
-        detection_frame.pack(fill=tk.BOTH, pady=(0, 20))
+        # Modern detection card with shadow effect
+        detection_card = tk.Frame(main_frame, bg="white", relief=tk.FLAT, bd=0)
+        detection_card.pack(fill=tk.BOTH, pady=(0, 25))
         
-        # Language label
-        lang_label_frame = ttk.Frame(detection_frame)
-        lang_label_frame.pack(fill=tk.X, pady=(0, 10))
+        detection_inner = tk.Frame(detection_card, bg="white", padx=30, pady=25)
+        detection_inner.pack(fill=tk.BOTH)
         
-        ttk.Label(lang_label_frame, text="Language:", font=("Arial", 10)).pack(side=tk.LEFT)
-        self.language_label = ttk.Label(
-            lang_label_frame,
-            text="---",
-            font=("Arial", 12, "bold"),
-            foreground="blue"
-        )
-        self.language_label.pack(side=tk.LEFT, padx=(10, 0))
-        
-        # Confidence bar
-        conf_label_frame = ttk.Frame(detection_frame)
-        conf_label_frame.pack(fill=tk.X)
-        
-        ttk.Label(conf_label_frame, text="Confidence:", font=("Arial", 10)).pack(anchor=tk.W)
-        
-        # Canvas for confidence bar
-        self.confidence_canvas = tk.Canvas(
-            detection_frame,
-            height=30,
+        # Card title
+        tk.Label(
+            detection_inner,
+            text="Detected Language",
+            font=("Segoe UI", 11, "bold"),
             bg="white",
-            highlightthickness=1,
-            highlightbackground="gray"
-        )
-        self.confidence_canvas.pack(fill=tk.X, pady=(5, 0))
+            fg="#7f8c8d"
+        ).pack(anchor=tk.W, pady=(0, 15))
         
-        self.confidence_text = ttk.Label(
-            detection_frame,
+        # Language display with modern font
+        self.language_label = tk.Label(
+            detection_inner,
+            text="---",
+            font=("Segoe UI", 36, "bold"),
+            bg="white",
+            fg=self.primary_color
+        )
+        self.language_label.pack(pady=(0, 20))
+        
+        # Confidence section
+        conf_label = tk.Label(
+            detection_inner,
+            text="Confidence Level",
+            font=("Segoe UI", 10),
+            bg="white",
+            fg="#7f8c8d"
+        )
+        conf_label.pack(anchor=tk.W, pady=(0, 8))
+        
+        # Modern progress bar
+        self.confidence_canvas = tk.Canvas(
+            detection_inner,
+            height=40,
+            bg="#ecf0f1",
+            highlightthickness=0
+        )
+        self.confidence_canvas.pack(fill=tk.X, pady=(0, 8))
+        
+        self.confidence_text = tk.Label(
+            detection_inner,
             text="0%",
-            font=("Arial", 9)
+            font=("Segoe UI", 13, "bold"),
+            bg="white",
+            fg="#34495e"
         )
-        self.confidence_text.pack(anchor=tk.E, pady=(2, 0))
+        self.confidence_text.pack(anchor=tk.E)
         
-        # Detection history section
-        history_frame = ttk.LabelFrame(
-            main_frame,
-            text="Detection History (Last 3)",
-            padding="15"
-        )
-        history_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 20))
+        # Modern history card
+        history_card = tk.Frame(main_frame, bg="white", relief=tk.FLAT, bd=0)
+        history_card.pack(fill=tk.BOTH, expand=True, pady=(0, 20))
         
-        # Listbox with scrollbar
-        list_frame = ttk.Frame(history_frame)
+        history_inner = tk.Frame(history_card, bg="white", padx=20, pady=20)
+        history_inner.pack(fill=tk.BOTH, expand=True)
+        
+        # Card title
+        tk.Label(
+            history_inner,
+            text="Recent Detections",
+            font=("Segoe UI", 11, "bold"),
+            bg="white",
+            fg="#7f8c8d"
+        ).pack(anchor=tk.W, pady=(0, 10))
+        
+        # Listbox with modern styling
+        list_frame = tk.Frame(history_inner, bg="white")
         list_frame.pack(fill=tk.BOTH, expand=True)
         
-        scrollbar = ttk.Scrollbar(list_frame)
+        scrollbar = tk.Scrollbar(list_frame, width=12)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         
         self.history_listbox = tk.Listbox(
             list_frame,
-            font=("Courier", 10),
-            height=3,
-            yscrollcommand=scrollbar.set
+            font=("Consolas", 10),
+            height=5,
+            bg="#f8f9fa",
+            fg="#2c3e50",
+            selectbackground=self.primary_color,
+            selectforeground="white",
+            yscrollcommand=scrollbar.set,
+            relief=tk.FLAT,
+            bd=0,
+            highlightthickness=0
         )
         self.history_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.config(command=self.history_listbox.yview)
         
-        # Export button
-        self.export_button = ttk.Button(
+        # Modern export button
+        self.export_button = tk.Button(
             main_frame,
-            text="Export History",
+            text="💾  Export History",
             command=self.export_history,
-            width=20
+            font=("Segoe UI", 11, "bold"),
+            bg=self.warning_color,
+            fg="white",
+            activebackground="#e67e22",
+            relief=tk.FLAT,
+            bd=0,
+            cursor='hand2',
+            height=2,
+            highlightthickness=0
         )
-        self.export_button.pack(pady=(0, 10))
+        self.export_button.pack(fill=tk.X)
     
     def start_recording(self):
         """Handler for Start Recording button."""
@@ -284,7 +378,7 @@ class RealtimeLanguageGUI:
             self.audio_handler.start_recording()
             
             # Update UI state
-            self.status_label.config(text="Recording", foreground="green")
+            self.status_label.config(text="● Recording", fg=self.success_color)
             self.start_button.config(state=tk.DISABLED)
             self.stop_button.config(state=tk.NORMAL)
             self.file_button.config(state=tk.DISABLED)
@@ -315,7 +409,7 @@ class RealtimeLanguageGUI:
                 self.audio_handler = None
             
             # Update UI state
-            self.status_label.config(text="Idle", foreground="gray")
+            self.status_label.config(text="● Ready", fg="#95a5a6")
             self.start_button.config(state=tk.NORMAL)
             self.stop_button.config(state=tk.DISABLED)
             self.file_button.config(state=tk.NORMAL)
@@ -340,7 +434,7 @@ class RealtimeLanguageGUI:
         self.is_processing = True
         
         # Update status to Processing
-        self.root.after(0, lambda: self.status_label.config(text="Processing", foreground="orange"))
+        self.root.after(0, lambda: self.status_label.config(text="● Processing", fg=self.warning_color))
         
         # Process in separate thread to avoid blocking GUI
         def process_audio():
@@ -401,7 +495,7 @@ class RealtimeLanguageGUI:
                 # Update status back to Recording
                 self.is_processing = False
                 if self.audio_handler and self.audio_handler.is_recording():
-                    self.root.after(0, lambda: self.status_label.config(text="Recording", foreground="green"))
+                    self.root.after(0, lambda: self.status_label.config(text="● Recording", fg=self.success_color))
         
         # Start processing thread
         processing_thread = threading.Thread(target=process_audio, daemon=True)
@@ -432,7 +526,7 @@ class RealtimeLanguageGUI:
             return  # User cancelled
         
         # Show processing indicator
-        self.status_label.config(text="Processing File", foreground="orange")
+        self.status_label.config(text="● Processing", fg=self.warning_color)
         self.file_button.config(state=tk.DISABLED)
         self.start_button.config(state=tk.DISABLED)
         
@@ -505,7 +599,7 @@ class RealtimeLanguageGUI:
                 ))
             finally:
                 # Restore UI state
-                self.root.after(0, lambda: self.status_label.config(text="Idle", foreground="gray"))
+                self.root.after(0, lambda: self.status_label.config(text="● Ready", fg="#95a5a6"))
                 self.root.after(0, lambda: self.file_button.config(state=tk.NORMAL))
                 self.root.after(0, lambda: self.start_button.config(state=tk.NORMAL))
         
@@ -533,29 +627,24 @@ class RealtimeLanguageGUI:
         
         canvas_height = 30
         
-        # Draw background
-        self.confidence_canvas.create_rectangle(
-            0, 0, canvas_width, canvas_height,
-            fill="lightgray",
-            outline=""
-        )
-        
-        # Draw confidence bar
+        # Draw modern confidence bar with rounded corners effect
         bar_width = int(canvas_width * probability)
         
         # Color based on confidence level
         if probability >= 0.8:
-            bar_color = "green"
+            bar_color = self.success_color
         elif probability >= 0.6:
-            bar_color = "orange"
+            bar_color = self.warning_color
         else:
-            bar_color = "red"
+            bar_color = self.danger_color
         
-        self.confidence_canvas.create_rectangle(
-            0, 0, bar_width, canvas_height,
-            fill=bar_color,
-            outline=""
-        )
+        # Draw filled portion
+        if bar_width > 0:
+            self.confidence_canvas.create_rectangle(
+                0, 0, bar_width, canvas_height,
+                fill=bar_color,
+                outline=""
+            )
         
         # Update confidence text
         self.confidence_text.config(text=f"{int(probability * 100)}%")
