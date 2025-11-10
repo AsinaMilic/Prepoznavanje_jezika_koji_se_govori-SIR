@@ -63,6 +63,3 @@ whisper:
   model_size: medium
   sample_rate: 16000
   silence_threshold: 0.005
-groq:
-  api_key: YOUR_GROQ_API_KEY_HERE
-  model: whisper-large-v3
