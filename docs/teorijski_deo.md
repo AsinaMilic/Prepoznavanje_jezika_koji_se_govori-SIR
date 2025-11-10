@@ -8,7 +8,7 @@
 **Elektronski fakultet**  
 **Katedra za računarstvo**
 
-**Mentor:** prof. dr Miloš Radmanović  
+**Mentor:** prof. dr Dragan Janković  
 **Student:** Aleksa Milić 1610
 
 **Niš, 2025.**
