@@ -66,10 +66,21 @@ class RealtimeLanguageGUI:
         self._setup_gui()
         
     def _load_config(self) -> dict:
-        """Load configuration from config.yaml."""
+        """Load configuration from config.yaml and config.local.yaml."""
         try:
             with open('config.yaml', 'r', encoding='utf-8') as f:
-                return yaml.safe_load(f)
+                config = yaml.safe_load(f)
+            
+            # Override with local config if exists (for API keys)
+            try:
+                with open('config.local.yaml', 'r', encoding='utf-8') as f:
+                    local_config = yaml.safe_load(f)
+                    if local_config:
+                        config.update(local_config)
+            except FileNotFoundError:
+                pass
+            
+            return config
         except Exception as e:
             print(f"Warning: Could not load config.yaml: {e}")
             return {
